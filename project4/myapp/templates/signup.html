@@ -14,7 +14,7 @@
 		{% if msg %}
 			<b style="color: blue;">{{msg}}</b>
 		{% endif %}
-		<form  name="contact" method="post" action="{% url 'signup' %}" >
+		<form  name="contact" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
 		{% csrf_token %}
 	<table>
 		<tr>
@@ -38,6 +38,10 @@
 			<td><input type="password" name="cpassword"></td>
 		</tr>
 		<tr>
+			<td>profile picture:</td>
+			<td><input type="file" name="profile_picture"></td>
+		</tr>
+		<tr>
 			<td>Mobile:</td>
 			<td><input type="text" name="mobile"></td>
 		</tr>
@@ -45,6 +49,7 @@
 			<td>address:</td>
 			<td><textarea rows="4" cols="40" name="address"></textarea></td>
 		</tr>
+
 		<tr>
 			<td colspan="2" align="center">
 				<input type="submit" name="action" value="sign up" class="btn-primary">

@@ -1,0 +1,64 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>signup</title>
+	<link href="{% static 'css/signup.css' %}" rel="stylesheet" />
+</head>
+<body>
+<center>
+	<h1>signup</h1>
+	{% if msg %}
+			<b style="color: blue;">{{msg}}</b>
+		{% endif %}
+		<form  name="contact" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+		{% csrf_token %}
+	<form name="contact" method="post" action="{% url 'signup' %}" enctype="multipart/form-data" class="signup-form">
+		{% csrf_token %}
+		<div class="form-group">
+		  <label for="fname">Fname:</label>
+		  <input type="text" name="fname" id="fname" class="form-control" required>
+		</div>
+		<div class="form-group">
+		  <label for="lname">Lname:</label>
+		  <input type="text" name="lname" id="lname" class="form-control" required>
+		</div>
+		<div class="form-group">
+		  <label for="email">Email:</label>
+		  <input type="text" name="email" id="email" class="form-control" required>
+		</div>
+		<div class="form-group">
+		  <label for="password">Password:</label>
+		  <input type="password" name="password" id="password" class="form-control" required>
+		</div>
+		<div class="form-group">
+		  <label for="cpassword">Confirm Password:</label>
+		  <input type="password" name="cpassword" id="cpassword" class="form-control" required>
+		</div>
+		<div class="form-group">
+		  <label for="profile_picture">Profile Picture:</label>
+		  <input type="file" name="profile_picture" id="profile_picture" class="form-control-file">
+		</div>
+		<div class="form-group">
+		  <label for="mobile">Mobile:</label>
+		  <input type="text" name="mobile" id="mobile" class="form-control" required>
+		</div>
+		<div class="form-group">
+		  <label for="address">Address:</label>
+		  <textarea rows="4" cols="40" name="address" id="address" class="form-control" required></textarea>
+		</div>
+		<div class="form-group form-button">
+		  <button type="submit" class="btn btn-primary">Sign Up</button>
+		</div>
+	  </form>
+	  
+</center>
+</body>
+</html>
+{% endblock %}

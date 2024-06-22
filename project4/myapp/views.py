@@ -21,6 +21,7 @@ def contact(request):
 		msg="contact saved successfully!!"
 		contacts=Contact.objects.all().order_by("-id")[:3]
 		return render(request,'contact.html',{'msg':msg,'contact':contacts})
+		
 	else:
 		contacts=Contact.objects.all().order_by("-id")[:3]
 		return render(request,'contact.html',{'contacts':contacts})
@@ -39,7 +40,8 @@ def signup(request):
 					email=request.POST['email'],
 					password=request.POST['password'],
 					mobile=request.POST['mobile'],
-					address=request.POST['address']
+					address=request.POST['address'],
+					profile_picture=request.FILES['profile_picture']
 				)
 				msg="user signup sucessfully"
 				return render(request,'signup.html',{'msg':msg})
@@ -56,6 +58,7 @@ def login(request):
 			if user.password==request.POST['password']:
 				request.session['email']=user.email
 				request.session['fname']=user.fname
+				request.session['profile_picture']=user.profile_picture.url
 				return render(request,'index.html')
 			else:
 				msg="incorrect password"
@@ -85,6 +88,7 @@ def change_password(request):
 				user.save()
 				del request.session['email']
 				del request.session['fname']
+				del request.session['profile_picture']
 				msg="password change sucessfully.."
 				return render(request,'login.html',{'msg':msg})
 			else:

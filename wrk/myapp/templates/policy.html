@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Insurance Policies</title>
+    <link rel="stylesheet" href="{% static 'css/policy.css' %}">
+</head>
+<body>
+
+    <h1>Life Insurance Policies</h1>
+
+    <div class="card-container">  {% for policy in LifeInsurancePolicy %}
+            <div class="card">
+                <img src="{{ policy.image_url }}" alt="{{ policy.title }}">
+                <div class="card-info">  <h4>{{ policy.title }}</h4>  <p>{{ policy.description }}</p>  </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
+{% endblock %}
+
+
+<!-- <section class="policy-container">
+    <h2>Life Insurance Policies</h2>
+    <div class="policy-grid">
+        {% for policy in LifeInsurancePolicy %}
+            <a href="#">
+                <div class="policy-box">
+                    <img src="{{ policy.image_url }}" alt="{{ policy.title }} Image">
+                    <h3>{{ policy.title }}</h3>
+                    <p>{{ policy.description }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</section> -->
