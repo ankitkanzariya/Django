@@ -36,7 +36,6 @@
                      <div class="option_container">
                         <div class="options">
                            
-                           
                            <a href="{% url 'product-details' pk=i.pk %}" class="option2">
                            Details
                            </a>
@@ -50,17 +49,12 @@
                            {{i.product_catagory}}'s {{i.product_sub_catagory}}
                         </h5>
                         <h6>
-                            {{i.product_price}}
+                           {{i.product_price}}
                         </h6>
                      </div>
                   </div>
                </div>
                {% endfor %}
-            </div>
-            <div class="btn-box">
-               <a href="">
-               View All products
-               </a>
             </div>
          </div>
       </section>

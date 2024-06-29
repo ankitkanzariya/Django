@@ -14,7 +14,7 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="full">
-                     <h3>Wishlists Grid</h3>
+                     <h3>Wishlist Grid</h3>
                   </div>
                </div>
             </div>
@@ -26,9 +26,13 @@
          <div class="container">
             <div class="heading_container heading_center">
                <h2>
-                My <span>Wishlist</span>
+                  {% if wishlists %}
+                     My <span>Wishlist</span>
+                  {% else %}
+                     No Products In <span>Wishlist</span>
+                  {% endif %}
                </h2>
-            </div> 
+            </div>
             <div class="row">
                {% for i in wishlists %}
                <div class="col-sm-6 col-md-4 col-lg-3">
@@ -49,22 +53,16 @@
                            {{i.product.product_catagory}}'s {{i.product.product_sub_catagory}}
                         </h5>
                         <h6>
-                          {{i.prodct.product_price}}
+                           {{i.product.product_price}}
                         </h6>
                      </div>
                   </div>
                </div>
                {% endfor %}
-
-            </div>
-          <div class="btn-box">
-               <a href="">
-               View All products
-               </a>
             </div>
          </div>
       </section>
       <!-- end product section -->
    </body>
 </html>
-{%endblock%}
+{% endblock %}
