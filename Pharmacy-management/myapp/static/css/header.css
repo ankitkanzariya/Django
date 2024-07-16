@@ -1,0 +1,13 @@
+header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #254336;
+       
+}
+
+.header-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%; /* Creates a circular image */
+  }

@@ -16,8 +16,7 @@ class User(models.Model):
     def __str__(self):
         return self.fname+" "+self.lname
     
-class Product(models.Model):
-    
+class Product(models.Model):    
     catagory=(
         ("Men","Men"),
         ("Women","Women"),
@@ -28,7 +27,6 @@ class Product(models.Model):
         ("T-shirt","T-shirt"),
         ("Shirts","Shirts"),
     )
-
     seller=models.ForeignKey(User,on_delete=models.CASCADE)
     product_catagory=models.CharField(max_length=100,choices=catagory)
     product_sub_catagory=models.CharField(max_length=100,choices=sub_catagory)
@@ -36,7 +34,7 @@ class Product(models.Model):
     product_price=models.PositiveBigIntegerField()
     product_image=models.ImageField(upload_to="product_image/")
     product_desc=models.TextField()
-
+    
     def __str__(self):
         return self.seller.fname+" - "+self.product_name    
 

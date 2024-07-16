@@ -1,0 +1,75 @@
+/* Base styles */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Container and content */
+  .container {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;  /* Optional background color */
+  }
+  
+  .content {
+    background-color: #fff; /* Form background color */
+    border-radius: 5px;
+    padding: 30px;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Adjust gap between input groups */
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust gap between label and input */
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  textarea {
+    resize: vertical; /* Allow textarea resizing */
+  }
+  
+  button[type="submit"] {
+    background-color: #4CAF50;  /* Change this for button color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #3e8e41;  /* Adjust hover color */
+  }
+  
+  /* Responsive layout for smaller screens */
+  @media (max-width: 768px) {
+    .content {
+      max-width: 90%;
+    }
+  }
+  

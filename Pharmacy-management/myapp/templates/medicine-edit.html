@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Medicine</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/medicine.css' %}">
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+        {% if msg %}
+        <b style="color:blue;">{{msg}}</b>
+        {% endif %} 
+      <h2>edit Medicine</h2>
+      <form action="{% url 'edit' pk=medicine.pk %}" method="post" >
+          {% csrf_token %}
+        <div class="input-group">
+          <label for="medicine_name">Medicine Name:</label>
+          <input type="text" id="medicine_name" name="medicine_name" value="{{medicine.medicine_name}}" readonly>
+        </div>
+        <div class="input-group">
+          <label for="price">Price:</label>
+          <input type="number" id="price" name="price" value="{{medicine.price}}" required>
+        </div>
+        <div class="input-group">
+          <label for="company">Company Name:</label>
+          <input type="text" id="company" name="company" value="{{medicine.company}}" required>
+        </div>
+        <div class="input-group">
+          <label for="use">Use:</label>
+          <textarea name="use" id="use" rows="4" cols="50"  >{{medicine.use}}</textarea>
+        </div>
+        <div class="input-group">
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" name="quantity" min="0" value="{{medicine.quantity}}" required>
+        </div>
+        <button type="submit">Update Medicine</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>+

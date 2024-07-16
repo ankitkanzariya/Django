@@ -1,0 +1,66 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>our-medicines</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/view-medicines.css' %}">
+</head>
+<body>
+
+  <div class="main">
+    <marquee class="marq" bgcolor="Green" 
+              direction="left" loop="">
+      <div class="geek1">
+        {{ request.session.fname }} {{ request.session.lname | default:'' }}'s {{ request.session.pharmacyname }}
+      </div>
+      <div class="geek2">
+        Add-medicine---View-medicine---Edit-medicine---Delete-medicine
+      </div>
+    </marquee>
+  </div>
+  <h1>Medicines</h1>
+
+  {% if msg %}
+  <b style="color:rgb(91, 91, 100);">{{msg}}</b>
+  {% endif %} 
+  
+  <table border="1px solid black" class="responsive-centered-table" style="width: 100%; padding: 10px; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>Medicines Name</th>
+        <th>price</th>
+        <th>Company Name</th>
+        <th>Useg</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead> 
+    
+    <tbody>
+      {% for i in medicines1 %}
+      <tr align="center">
+        <td>{{ i.medicine_name }}</td>
+        <td>{{ i.price }}</td>
+        <td>{{ i.company }}</td>
+        <td>{{ i.use }}</td>
+        <td>{{ i.quantity }}</td>
+        <td>
+          <a href="{% url 'delete' pk=i.pk %}" onclick="return confirm('Are you sure you want to delete this medicine?');" >Delete</a> <br> 
+          <a href="{% url 'edit' pk=i.pk %}" >Edit</a>
+        </td>
+      </tr>
+      {% endfor %} 
+    </tbody>
+  </table>
+  
+</body>
+</html>
+{% endblock %}
+
+<!-- 
+ -->
