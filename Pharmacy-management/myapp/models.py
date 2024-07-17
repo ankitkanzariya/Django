@@ -22,4 +22,4 @@ class Medicine(models.Model):
         
     def __str__(self):
         return f"{self.medicine_name} ({self.company})"
-  
+
