@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>edit Form</title>
+</head>
+<body>
+  {% if request.session.femail %}
+    <h2>Registration Form {{ request.session.fac_name }} </h2>
+  {% else %}
+    <h2>Registration Form </h2>
+  {% endif %}
+  <form action="{% url 'edit-student' pk=student.pk %}" method="post">
+    {% csrf_token %}
+    <label for="fname">First Name:</label>
+    <input type="text" id="fname" name="fname" value="{{student.fname}}" required><br><br>
+
+    <label for="lname">Last Name:</label>
+    <input type="text" id="lname" name="lname" value="{{student.lname}}" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="{{student.email}}" readonly><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" value="{{student.password}}" name="password" readonly><br><br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" required></textarea><br><br>
+    {% if student.gender == "male" %}
+    <label for="gender">Gender:</label>
+    <input type="radio" id="male" name="gender" value="male" checked>
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label><br><br>
+    {% else %}
+    <label for="gender">Gender:</label>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="female" checked>
+    <label for="female">Female</label><br><br>
+    {% endif %}
+    
+
+    <select name="qualification">
+        {% if student.qualification == "ssc" %}
+        <option value="ssc" selected>SSC</option>
+        <option value="hsc">HSC</option>
+        <option value="graduate">Graduate</option>
+        <option value="postgraduate">Postgraduate</option>
+        {% elif student.qualification == "hsc" %}
+        <option value="ssc">SSC</option>
+        <option value="hsc" selected>HSC</option>
+        <option value="graduate">Graduate</option>
+        <option value="postgraduate">Postgraduate</option>
+        {% elif student.qualification == "graduate" %}
+        <option value="ssc">SSC</option>
+        <option value="hsc">HSC</option>
+        <option value="graduate" selected>Graduate</option>
+        <option value="postgraduate">Postgraduate</option>
+        {% elif student.qualification == "postgraduate" %}
+        <option value="ssc">SSC</option>
+        <option value="hsc">HSC</option>
+        <option value="graduate">Graduate</option>
+        <option value="postgraduate" selected>Postgraduate</option>
+        {% endif %}
+    </select>
+   <br><br>
+
+    <input type="submit" value="Register">
+  </form>
+</body>
+</html>
