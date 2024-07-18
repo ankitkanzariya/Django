@@ -4,8 +4,12 @@
   <title>Registration Form</title>
 </head>
 <body>
-  <h2>Registration Form</h2>
-  <form action="{% url 'signup' %}" method="post">
+  {% if request.session.femail %}
+    <h2>Registration Form {{ request.session.fac_name }} </h2>
+  {% else %}
+    <h2>Registration Form </h2>
+  {% endif %}
+  <form action="{% url 'add-to-student' %}" method="post">
     {% csrf_token %}
     <label for="fname">First Name:</label>
     <input type="text" id="fname" name="fname" required><br><br>

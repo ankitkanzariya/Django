@@ -1,71 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Index Page</title>
-  <style>
-    .responsive-centered-table {
-    width: 100%; /* Ensures table stretches to container width */
-    border-collapse: collapse; /* Removes borders between cells */
-  }
-
-  .responsive-centered-table th,
-  .responsive-centered-table td {
-    text-align: center; /* Aligns content horizontally in cells */
-    padding: 10px; /* Adds padding for better readability */
-  }
-
-  @media only screen and (max-width: 768px) { /* Responsive adjustments for smaller screens */
-    .responsive-centered-table {
-      font-size: 14px; /* Adjust font size for smaller screens */
-    }
-  }
-  </style>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome!</h1>
-    {% if msg %}
-      <b style="color: blue;">{{ msg }}
-    {% endif %}
 
-    {% if request.session.email %}
-    <h1>User Data</h1>    
-    <table border="2px solid black" class="responsive-centered-table">
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>gender</th>
-          <th>qualification</th>
-        </tr>
-      </thead>
-      <tbody>        
-        <tr>
-          <td>{{ request.session.fname }}</td>
-          <td>{{ request.session.lname }}</td>
-          <td>{{ request.session.email }}</td>
-          <td>{{ request.session.gender }}</td>
-          <td>{{ request.session.qualification }}</td>
-        </tr>       
-      </tbody>
-    </table>
+    <h2>index</h2>
+    {% if msg %}
+      <b style="color: blue;">{{ msg }}</b>
     {% endif %}
-    <div class="button-container d-flex justify-content-center">
-      {% if request.session.email %}
-        <!-- <a href="{% url 'signup' %}" class="btn btn-primary me-2">Sign Up</a> -->
-        <a href="{% url 'add-student' %}" class="btn btn-primary me-2">Add-student</a>
-        <a href="{% url 'view-student' %}" class="btn btn-primary me-2">View-student</a>
+    
+    {% if request.session.femail %}
+        <h2>{{ request.session.femail}}</h2>
+        
+        <a href="{% url 'add-student' %}">Add-student</a> 
+        <a href="{% url 'view-student' %}">view-student</a>        
         <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
       {% else %}
-        <a href="{% url 'signup' %}" class="btn btn-primary me-2">Signup</a>
         <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
       {% endif %}
-    </div>    
-  </div>  
+
 </body>
 </html>

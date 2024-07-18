@@ -1,51 +1,58 @@
 from django.shortcuts import render
-from .models import Student
+from .models import Faculty,Student
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
     return render(request,'index.html')
-
-def signup(request):
-    if request.method == "POST":
-        try:
-            student=Student.object.get(email=request.POST['email'])
-            msg="email already registered"
-            return render(request,'index.html',{'msg':msg})
-        except:
-            if request.POST['password']==request.POST['cpassword']:
-                Student.objects.create(
-                        fname=request.POST['fname'],
-                        lname=request.POST['lname'],
-                        email=request.POST['email'],
-                        password=request.POST['password'],
-                        address=request.POST['address'],
-                        gender=request.POST['gender'],
-                        qualification=request.POST['qualification']
-                    )
-                msg="user sign up sucessfully"
-                return render(request,'login.html',{'msg':msg})
-            else:
-                msg="password and confirm password does not match"
-                return render(request,'signup.html',{'msg':msg})   
-    else:
-        return render(request,'signup.html')
     
 def login(request):
     if request.method == "POST":
         try:
-            student = Student.objects.get(email=request.POST['email'])
-            if student.password == request.POST['password']:
-                request.session['fname'] = student.fname
-                request.session['lname'] = student.lname
-                request.session['email'] = student.email
-                request.session['password']=student.password
+            faculty = Faculty.objects.get(femail=request.POST['femail'])
+            if(faculty.fpassword == request.POST['fpassword']):
+                request.session['femail'] = faculty.femail
                 msg = "Login successful"
-                return render(request, 'index.html', {'msg': msg}) 
-                msg = "Incorrect Password"
+                return render(request, 'index.html', {'msg': msg})
+            else:
+                msg = "Invalid email or password"
                 return render(request, 'login.html', {'msg': msg})
-        except Student.DoesNotExist:
-            msg = "Email Not Registered"
+        except ObjectDoesNotExist: 
+            msg = "Invalid email or password"
             return render(request, 'login.html', {'msg': msg})
     else:
-        msg = "Please use the login form" 
+        msg = "Please enter your login credentials."
         return render(request, 'login.html', {'msg': msg})
+
+def add_student(request):
+    return render(request,'add-student.html')
+
+def add_to_student(request):
+    if request.method == "POST":
+            faculty=Faculty.objects.get(femail=request.session['femail'])
+            email=request.POST['email']            
+            student=Student.objects.create(
+            faculty=faculty,
+            fname=request.POST['fname'],
+            lname=request.POST['lname'],
+            email=request.POST['email'],
+            password=request.POST['password'],
+            gender=request.POST['gender'],
+            qualification=request.POST['qualification'],
+            address=request.POST['address'],
+            )
+            msg="student added sucessfully"
+            return render(request,'view-student.html',{'msg':msg})
+    else:
+        return render(request,'index.html')
+    
+def logout(request):
+    return render(request,'index.html')
+    
+def view_student(request):
+    faculty=Faculty.objects.get(femail=request.session['femail'])
+    student=Student.objects.filter(faculty=faculty)
+    return render(request,'view-student.html',{'student':student})
+
+
+

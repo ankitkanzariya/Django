@@ -2,7 +2,16 @@ from django.db import models
 
 # Create your models here.
 
+class Faculty(models.Model):
+    fac_name = models.CharField(max_length=50) 
+    femail = models.EmailField(unique=True)  
+    fpassword = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.fac_name +" "+self.femail
+
 class Student(models.Model):
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     fname = models.CharField(max_length=50) 
     lname = models.CharField(max_length=50) 
     email = models.EmailField(unique=True)  
@@ -16,14 +25,5 @@ class Student(models.Model):
         ('postgraduate', 'Postgraduate'),
     ])
 
-def __str__(self):
+    def __str__(self):
         return f"{self.fname} {self.lname} ({self.qualification})"
-
-class Faculty(models.Model):
-    fac_name = models.CharField(max_length=50) 
-    fac_email = models.EmailField(unique=True)  
-    fac_password = models.CharField(max_length=128)
-
-def __str__(self):
-        return self.fac_name +" "+self.fac_email
-
