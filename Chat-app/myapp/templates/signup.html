@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if msg %}
+        <b style="color: blue;">{{msg}}</b>
+    {% endif %}
+    <form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Firstname</td>
+                <td><input type="text" name="fname" ></td>
+            </tr>
+            <tr>
+                <td>Lastname</td>
+                <td><input type="text" name="lname" ></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" ></td>
+            </tr>
+            <tr>
+                <td>profile</td>
+                <td><input type="file" name="profile_picture" ></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" ></td>
+            </tr>
+            <tr>
+                <td>confirm-Password</td>
+                <td><input type="password" name="cpassword" ></td>
+            </tr>
+            <tr>
+                <td>mobile</td>
+                <td><input type="tel" name="mobile" ></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="sign up">
+                </td>
+            </tr>
+        </table>
+</body>
+</html>

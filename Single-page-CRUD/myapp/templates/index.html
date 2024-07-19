@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+<body>   
+    <form method="post" action="{% url 'index' %}" align="center">
+        {% csrf_token %}
+        <tr>
+            <td>firstname</td>
+            <td><input type="text" name="firstname"></td>
+        </tr><br>
+        <tr>
+            <td>lastname</td>
+            <td><input type="text" name="lastname"></td>
+        </tr><br>
+        <tr>
+            <td>email</td>
+            <td><input type="text" name="email"></td>
+        </tr><br>
+        <tr>
+            <td>password</td>
+            <td><input type="password" name="password"></td>
+        </tr><br>
+        <tr>
+            <td colspan="2"><input type="submit" value="insert"></td>
+        </tr>
+    </form>
+<br><br><br>
+<hr>
+{% if msg %}
+<b style="color: blue; text-align: center;">{{msg}}</b>
+{% endif %}
+<table border="1px solid black" class="responsive-centered-table" style="width: 100%; padding: 10px; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>firstname</th>
+        <th>lastname</th>
+        <th>email</th>
+        <th>password</th>        
+        <th>Actions</th>
+      </tr>
+    </thead> 
+    
+    <tbody>
+
+        {% if student  %}
+           <h5>{{student.firstname}}</h5> 
+        {% endif %}
+
+    {% for i in student %}
+      <tr align="center">
+        <td>{{ i.firstname }}</td>
+        <td>{{ i.lastname }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.password }}</td>
+        
+        <td>
+            <a href="{% url 'delete' pk=i.pk %}" >Delete</a>
+          <a href="{% url 'edit' pk=i.pk %}" >Edit</a>
+        </td>
+      </tr>
+
+
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
